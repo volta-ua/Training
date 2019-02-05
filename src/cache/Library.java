@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 
 public class Library{
     private List<Book> list=new LinkedList();
+    private int size;
 
     @Override
     public String toString() {
@@ -30,22 +31,18 @@ public class Library{
         }
     }
 
-    public Book[] getBooksByMask(String search, Attributes attr){
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Book[]foundBooks=new Book[this.list.size()-1];
-        int counter=0;
+    public int getSize(){
+        return list.size();
+    }
+
+    public Library getBooksByMask(String search, Attributes attr){
+        Library foundBooks=new Library();
         for(Book b : list){
-            String ss=b.getField(attr);
-            if(b.getField(attr).matches("(.*)"+search+"(.*)"))
-                foundBooks[counter++]=b;
+            if(b.getField(attr).matches("(?i:.*"+search+".*)"))
+                foundBooks.add(b);
         }
-        if (counter==0)
+        if (foundBooks.getSize()==0)
             return null;
-        foundBooks= Arrays.copyOf(foundBooks,counter);
         return foundBooks;
     }
 
@@ -73,7 +70,8 @@ public class Library{
         if (o.toString().length()>symbAmount){
             return o.toString().substring(0,symbAmount);
         }else{
-                return o.toString()+IntStream.range(0, symbAmount-o.toString().length()).mapToObj(x -> smbToFill).collect(Collectors.joining());
+            return o.toString()+IntStream.range(0, symbAmount-o.toString().length()).mapToObj(x -> smbToFill).collect(Collectors.joining());
         }
     }
+
 }
