@@ -19,7 +19,6 @@ public class CacheApp {
                 "===============================================================================================================================");
         /*
         Book[]result=lib.getBooksByMask("18.+",Attributes.YEAR);
-
         for(Book b : result)
             System.out.print(b);
         */
