@@ -1,0 +1,5 @@
+package cache;
+
+enum Ganres {
+    ANCIENT, MEDIEVAL,RENAISSANCE,XIX,MODERN,POSTMODERN
+}
